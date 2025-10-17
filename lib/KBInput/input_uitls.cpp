@@ -7,7 +7,7 @@ String Getinput_blocking(bool display)
 
     while (!stringComplete)
     {
-        if (Wire.requestFrom(Keyboardaddress, 1) > 0)
+        if (Wire.requestFrom(kbAddress, 1) > 0)
         {
             while (Wire.available())
             {

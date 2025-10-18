@@ -8,6 +8,4 @@ extern const uint8_t MAC[6];
 extern String check_code;
 extern String ssid;
 extern String password;
-extern int8_t channel;
-extern int8_t ssid_hidden;
-extern int8_t max_connection;
+extern int8_t check_right; // 此项为0则检测通过

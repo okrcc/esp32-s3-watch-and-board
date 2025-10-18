@@ -16,10 +16,16 @@
 - **构建系统**：PlatformIO
 - **开发框架**：Arduino（在 PlatformIO 中使用相应的板子与框架配置）
 
-建议安装插件和工具：
-
-- PlatformIO IDE（VSCode 插件）
-- 串口调试终端（VSCode 内置或 PlatformIO Serial Monitor）
+## 项目结构
+- `src/`：存放主要的源代码文件
+  - `core_board/`：核心板（ESP32-S3-WROOM-1-N16R8）相关代码
+  - `watch_board/`：微雪 ESP32-S3 手表相关代码
+- `lib/`：存放自定义库文件
+  - `Major/`：重要功能模块, 全局变量以及单文件头文件
+  - `Manager/`：管理器模块, 包括状态管理, 调度器
+  - `KBManager/`：键盘管理模块, 负责与 M5Stack Unit CardKB 通信
+  - `Check`：检查模块, 包括启动检测以及复检
+  - `utils/`：实用工具函数, 如自跳等
 
 ## 硬件清单
 
@@ -31,13 +37,6 @@
   - 用途：作为外设键盘，通过 I2C 接口与 ESP32-S3 通信，用于输入字符或控制命令。
   - 产品资料参考：[M5Stack — Unit CardKB v1.1](https://docs.m5stack.com/en/unit/cardkb)
 
-（可选）其他外设：
-
-- 温湿度传感器
-- 加速度计
-- 外部电源模块
-- 按键
-- I2C/SPI 传感器
 
 ## 快速开始
 
@@ -45,17 +44,8 @@
 2. 连接 ESP32-S3 开发板至电脑，确保驱动已正确安装
 3. 在 VSCode 中使用 PlatformIO 打开串口监视器，波特率设置为 115200
 4. 编写或导入 Arduino 程序，选择对应的开发板和串口
-5. 上传程序至 ESP32-S3 开发板，观察串口输出信息
+5. 上传程序至开发板，观察串口输出信息
 6. 断开串口监视器，重启开发板，运行程序
-
-## 参考资料
-
-- [ESP32-S3 官方文档](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/index.html)
-- [Arduino 官方文档](https://www.arduino.cc/reference/en/)
-- [PlatformIO 文档](https://docs.platformio.org/en/latest/)
-- [蓝牙基础知识](https://www.bluetooth.com/bluetooth-resources/bluetooth-101/)
-- [WiFi 基础知识](https://www.wi-fi.org/discover-wi-fi/wi-fi-101)
-- [ESP-NOW 协议介绍](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/wifi/esp_now.html)
 
 ## 参与贡献
 
@@ -67,6 +57,7 @@
 - 提交问题与建议
 
 请通过 Fork 本仓库，提交 Pull Request 参与贡献。
+或者向我的[邮箱](3501132@qq.com)发送私信交流。
 
 ## 许可证
 

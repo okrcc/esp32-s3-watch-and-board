@@ -2,4 +2,5 @@
 
 void StartCheck();
 void DoubleCheck();
+void UseNormalSettings();
 

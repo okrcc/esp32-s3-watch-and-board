@@ -4,7 +4,6 @@ String Getinput_blocking(bool display)
 {
     String inputString = "";
     bool stringComplete = false;
-
     while (!stringComplete)
     {
         if (Wire.requestFrom(kbAddress, 1) > 0)

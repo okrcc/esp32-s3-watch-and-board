@@ -1,5 +1,29 @@
 #include "AllInclude.h"
 
+void connectToNetwork(String ssid, String password)
+{
+    WiFi.disconnect();
+    // 开始连接WiFi
+    WiFi.begin(ssid, password);
+
+    Serial.print("正在连接到WiFi ");
+    Serial.println(ssid);
+
+    // 等待连接成功
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(1000);
+        Serial.print(".");
+    }
+
+    // 连接成功后的操作
+    Serial.println("");
+    Serial.println("WiFi连接成功！");
+    Serial.print("IP地址: ");
+    Serial.println(WiFi.localIP());
+}
+
+
 // 连接到指定网络的函数
 void connectToNetwork(int networkIndex) // 这个函数由deepseek编写,
 {

@@ -3,6 +3,7 @@
 void StartCheck()
 {
     // 检测直跳激活, 选择激活方式
+    device_run_state = PASSIVE_RUN;
     if (testForShort(12, 13) == true)
     {
         device_run_state = AUTO_RUN;
@@ -10,7 +11,7 @@ void StartCheck()
         // 自动模式下, 设备不应当也不应该使用键盘控制和选择设备功能, 应该由功能主动请求键盘输入作为运行资料
         // 调度器应当首先选择主动调度, 而非被动调度模式
         return;
-    }
+    } 
     Serial.println("\n启动自检, 包括信息设备以及键盘等");
     Serial.printf("Flash 大小: %d MB\n", spi_flash_get_chip_size() / (1024 * 1024));
     Serial.printf("PSRAM 大小: %d MB\n", esp_spiram_get_size() / (1024 * 1024));
@@ -36,7 +37,30 @@ void StartCheck()
         }
     }
     Serial.println("自检完成, 激活使用");
+    Serial.println("请确认是否使用预设设置, 输入1 确认, 输入其他任意字符取消");
+    if (Getinput_blocking() == "1"){
+        UseNormalSettings();
+    }
 }
 void DoubleCheck(){//未实现功能, 使用startcheck代替
     StartCheck();
 };
+
+void UseNormalSettings(){
+    device_ssid = preferences.getString("d_ssid", check_code);
+    device_password = preferences.getString("d_password", check_code);
+    connect_ssid = preferences.getString("c_ssid", check_code);
+    connect_password = preferences.getString("c_password", check_code);
+    Serial.println("是否使用预设AP, 输入1 确认, 输入其他任意字符取消");
+    if (Getinput_blocking() == "1"){
+        Serial.println("使用预设AP");
+
+        WiFi.softAP(device_ssid.c_str(), device_password.c_str());
+    }
+    Serial.println("是否使用预设连接, 输入1 确认, 输入其他任意字符取消");
+    if (Getinput_blocking() == "1"){
+        Serial.println("使用预设连接");
+        connectToNetwork(connect_ssid, connect_password);
+    }
+}
+

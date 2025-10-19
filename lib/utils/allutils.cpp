@@ -21,3 +21,15 @@ void Clearscreen(){ // 本段需要实现串口输出清屏以及屏幕清屏功
     Serial.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");// 面向结果编程.jpg
     // 屏幕清屏功能保留
 }
+
+void getkv(){
+    String key = Getinput_blocking();
+    String value = preferences.getString(key.c_str(), "无值");
+    Serial.println(value);
+}
+
+void setkv(){
+    String key = Getinput_blocking();
+    String value = Getinput_blocking();
+    preferences.putString(key.c_str(), value);
+}

@@ -37,3 +37,6 @@ void StartCheck()
     }
     Serial.println("自检完成, 激活使用");
 }
+void DoubleCheck(){//未实现功能, 使用startcheck代替
+    StartCheck();
+};

@@ -9,6 +9,9 @@ extern String check_code;
 extern int8_t check_right; // 此项为0则检测通过 1则键盘不通过(注意自跳)
 extern String ssid;
 extern String password;
+extern int8_t channel;
+extern int8_t ssid_hidden;
+extern int8_t max_connection;
 
 enum operation_state
 {

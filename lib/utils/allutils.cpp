@@ -16,3 +16,8 @@ bool testForShort(int pinOutput, int pinInput)
     int valueLow = digitalRead(pinInput);
     return (valueHigh == HIGH && valueLow == LOW ) ? true : false;
 }
+
+void Clearscreen(){ // 本段需要实现串口输出清屏以及屏幕清屏功能
+    Serial.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");// 面向结果编程.jpg
+    // 屏幕清屏功能保留
+}
